@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple To-Do List</title>
+    <style>
+        body {
+            background: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 70%;
+            padding: 8px;
+            margin-right: 8px;
+        }
+        button {
+            padding: 9px 16px;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        li button {
+            background: none;
+            border: none;
+            color: #c00;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input id="todo-input" type="text" placeholder="Add a new to-do" />
+        <button onclick="addTodo()">Add</button>
+        <ul id="todo-list"></ul>
+    </div>
+    <script>
+        function addTodo() {
+            const input = document.getElementById("todo-input");
+            const value = input.value.trim();
+            if (!value) return;
+
+            const ul = document.getElementById("todo-list");
+            const li = document.createElement("li");
+            li.textContent = value;
+
+            const delButton = document.createElement("button");
+            delButton.textContent = "Delete";
+            delButton.onclick = function () {
+                ul.removeChild(li);
+            };
+            li.appendChild(delButton);
+
+            ul.appendChild(li);
+            input.value = "";
+            input.focus();
+        }
+    </script>
+</body>
+</html>
